@@ -1,4 +1,4 @@
-export const WELL_ADDRESS = "GA4YYRAAANSWHQ54JODWU6OVVOVQFCA4DFLXV6QR4OFU5KJJSBFGHGRV";
-export const HORIZON_URL = "https://horizon-testnet.stellar.org";
-export const NETWORK_PASSPHRASE = "Test SDF Network ; September 2015";
-export const STELLAR_EXPERT_URL = "https://stellar.expert/explorer/testnet/tx/";
+export const WELL_ADDRESS = import.meta.env.VITE_WELL_ADDRESS;
+export const HORIZON_URL = import.meta.env.VITE_HORIZON_URL;
+export const NETWORK_PASSPHRASE = import.meta.env.VITE_NETWORK_PASSPHRASE;
+export const STELLAR_EXPERT_URL = import.meta.env.VITE_STELLAR_EXPERT_URL;
