@@ -3,7 +3,6 @@ import {
   xdr,
   Address,
   TransactionBuilder,
-  StrKey,
 } from "@stellar/stellar-sdk";
 import { CONFIG } from "../config";
 
@@ -96,12 +95,7 @@ export async function signAndSubmit(
 
 // Works for both G-addresses (accounts) and C-addresses (contracts)
 export const addrToScVal = (addr: string): xdr.ScVal => {
-  if (addr.startsWith("G")) {
-    const raw = StrKey.decodeEd25519PublicKey(addr);
-    const accountId = xdr.AccountId.publicKeyTypeEd25519(raw);
-    return xdr.ScVal.scvAddress(xdr.ScAddress.scAddressTypeAccount(accountId));
-  }
-  return Address.fromString(addr).toScVal();
+  return new Address(addr).toScVal();
 };
 
 export const i128ToScVal = (n: bigint): xdr.ScVal => {

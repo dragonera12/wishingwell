@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-background text-white font-sans;
+  }
+}
+
+.glass {
+  @apply bg-surface/80 backdrop-blur-md border border-border;
+}
+
+.card-glow {
+  @apply shadow-[0_0_20px_rgba(37,99,235,0.1)] border border-border hover:border-primary/50 transition-all duration-300;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-background;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-border rounded-full hover:bg-zinc-800;
+}

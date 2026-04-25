@@ -1,0 +1,50 @@
+name: Stellar DEX Mini CI/CD
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  contracts:
+    name: Contracts Lint & Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: wasm32-unknown-unknown
+      - name: Rust Cache
+        uses: Swatinem/rust-cache@v2
+      - name: Install Stellar CLI
+        run: curl -sL https://raw.githubusercontent.com/stellar/stellar-cli/main/install.sh | sh
+      - name: Build Contracts
+        run: |
+          stellar contract build
+        working-directory: ./contracts
+      - name: Contract Tests
+        run: cargo test
+        working-directory: ./contracts
+
+  frontend:
+    name: Frontend Lint & Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: './frontend/package-lock.json'
+      - name: Install Dependencies
+        run: npm install
+        working-directory: ./frontend
+      - name: Lint
+        run: npm run lint
+        working-directory: ./frontend
+      - name: Build
+        run: npm run build
+        working-directory: ./frontend
