@@ -1,0 +1,66 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600;700&display=swap');
+
+@theme {
+  --font-serif: "Cinzel", serif;
+  --font-sans: "Inter", sans-serif;
+}
+
+:root {
+  background-color: #0a0a1a;
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  color: white;
+}
+
+/* Custom animations without @apply */
+@keyframes ripple {
+  0% { transform: scale(0.8); opacity: 0; }
+  50% { opacity: 0.3; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
+
+.animate-ripple {
+  animation: ripple 4s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes toss {
+  0% {
+    transform: translate(0, 200px) scale(1) rotateX(0deg);
+    opacity: 1;
+  }
+  30% {
+    transform: translate(0, -100px) scale(1.5) rotateX(360deg);
+  }
+  70% {
+    transform: translate(0, 0) scale(0.5) rotateX(720deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(0, 20px) scale(0) rotateX(1080deg);
+    opacity: 0;
+  }
+}
+
+.animate-toss {
+  animation: toss 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a1a;
+}
+::-webkit-scrollbar-thumb {
+  background: #1a1a3a;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #7c3aed33;
+}
